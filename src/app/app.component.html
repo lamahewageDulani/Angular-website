@@ -3,22 +3,14 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span id="menuTitle">Address Book</span>
-    <a mat-button class="top-menu-item" [routerLink]="['/']">Home</a>
-    <a mat-button class="top-menu-item" [routerLink]="['/contacts']">Contact</a>
-    <a mat-button class="top-menu-item" [routerLink]="['/newcontact']">New Contact</a>
+    <a *ngFor="let item of navItemsArray" mat-button class="top-menu-item" [routerLink]="[item.path]">{{ item.label}}</a>
 </mat-toolbar>
 
 <mat-sidenav-container>
     <mat-sidenav #sidenav [fixedInViewport]="true" [fixedTopGap]="60" mode="side" opened>
         <div class="side-nav-items">
-            <div>
-                <a mat-button (click)="sidenav.close()" class="side-menu-item" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</a>
-            </div>
-            <div>
-                <a mat-button (click)="sidenav.close()" class="side-menu-item" [routerLink]="['/contacts']"><mat-icon>contacts_product</mat-icon>contacts</a>
-            </div>
-            <div>
-                <a mat-button (click)="sidenav.close()" class="side-menu-item" [routerLink]="['/newcontact']"><mat-icon>person_add</mat-icon>New Contact</a>
+            <div  *ngFor="let item of navItemsArray">
+                <a mat-button (click)="sidenav.close()" class="side-menu-item" [routerLink]="[item.path]"><mat-icon>{{ item.icon }}</mat-icon>{{ item.label }}</a>
             </div>
         </div>
     </mat-sidenav>
